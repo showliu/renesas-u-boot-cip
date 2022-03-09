@@ -148,10 +148,12 @@ static int ehci_usb_probe(struct udevice *dev)
 	err = ehci_enable_vbus_supply(dev);
 	if (err)
 		goto reset_err;
-
+#if 0
 	err = ehci_setup_phy(dev, &priv->phy, 0);
+#endif
 	if (err)
 		goto regulator_err;
+
 
 	hccr = map_physmem(dev_read_addr(dev), 0x100, MAP_NOCACHE);
 	hcor = (struct ehci_hcor *)((uintptr_t)hccr +
